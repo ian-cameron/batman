@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Batman</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<%= yield %>
-
+<% if @current_client%>
+    <%=render 'layouts/header'%>
+    <div class="container-fluid">
+    	<%= yield %>
+    </div>
+<%else%>
+	<%= render :file => 'sessions/new'%>
+<%end%>
 </body>
 </html>

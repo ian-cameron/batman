@@ -11,9 +11,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20140814223205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "clients", force: true do |t|
+    t.string   "name"
+    t.string   "password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "deployments", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "device_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.float    "start_voltage"
+    t.float    "end_voltage"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "device_types", force: true do |t|
+    t.string   "name"
+    t.string   "brand"
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "devices", force: true do |t|
+    t.integer  "client_id"
+    t.integer  "type_id"
+    t.string   "name"
+    t.datetime "purchased_on"
+    t.datetime "retired_on"
+    t.text     "notes"
+    t.float    "voltage"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "projects", force: true do |t|
+    t.integer  "client_id"
+    t.string   "name"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

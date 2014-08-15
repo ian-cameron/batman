@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project_id: 1
+  device_id: 1
+  start_date: 2014-08-14 15:29:48
+  end_date: 2014-08-14 15:29:48
+  start_voltage: 
+  end_voltage: 
+
+two:
+  project_id: 1
+  device_id: 1
+  start_date: 2014-08-14 15:29:48
+  end_date: 2014-08-14 15:29:48
+  start_voltage: 
+  end_voltage: 

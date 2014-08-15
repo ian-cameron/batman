@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 
+  client_id: 
+  name: 
+  start_date: 2014-08-14 15:31:35
+  end_date: 2014-08-14 15:31:35
+
+two:
+  id: 
+  client_id: 
+  name: 
+  start_date: 2014-08-14 15:31:35
+  end_date: 2014-08-14 15:31:35
