@@ -1,0 +1,13 @@
+	  <div class="panel panel-default">
+	    <div class="panel-heading">	
+	      <h3 class="panel-title">Batteries Available</h3> 
+		  <%=link_to "<div class='btn-header btn-sm btn-default pull-right'><span class='glyphicon glyphicon-plus'></span> New Battery</div>".html_safe, new_device_path %>
+	    </div>
+	    <div class="panel-body">
+	      <% @devices.each do |d| %>
+		    <div class='battery'>
+				<%= d.voltage.to_s %>
+			</div>
+		  <%end%>
+	    </div>
+	  </div>

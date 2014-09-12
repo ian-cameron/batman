@@ -1,0 +1,20 @@
+<%=form_for @device_type do |f|%>
+<table>
+	<tr>
+      <th><%= f.label :model %></th>
+      <td><%= f.text_field :name%></td>
+  </tr>
+  <tr>
+	  <th><%= f.label :make %></th>
+	  <td><%= f.text_field :brand%></td>
+  </tr>
+  <tr>
+	  <th><%= f.label :notes %></th>
+	  <td><%= f.text_area :notes%></td>
+  </tr>
+  <tr>
+	  <th></th>
+	  <td><%= f.submit %></td>
+  </tr>
+</table>
+<% end %>

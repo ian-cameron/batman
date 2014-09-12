@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    client = Client.authenticate(params[:password])
+    client = Client.authenticate(params[:login], params[:password])
     if client
       session[:client_id] = client.id
       redirect_to root_url, :notice => "Logged in!"

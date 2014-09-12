@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <%= javascript_include_tag 'application'%>
   <title>Batman</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -11,7 +12,7 @@
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<% if @current_client%>
+<% if current_client%>
     <%=render 'layouts/header'%>
     <div class="container-fluid">
     	<%= yield %>

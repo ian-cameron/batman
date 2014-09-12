@@ -13,8 +13,9 @@ body {
 </div>
 <%= form_tag sessions_path, class:'form-signin' do %>
 
-    <%= label_tag 'Enter password to continue:'%><br />
-    <%= password_field_tag :password, nil, class:'form-control'%>
+    <%= label_tag 'Enter user and password to continue:'%><br />
+	<%= text_field_tag :login, nil, class:'form-control', placeholder: 'username'%>
+    <%= password_field_tag :password, nil, class:'form-control', placeholder: 'password'%>
 
   <p class="button"><%= submit_tag "Log in", class:'form-control btn btn-default' %></p>
 <% end %>

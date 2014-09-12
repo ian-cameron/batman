@@ -1,0 +1,20 @@
+<%=form_for @project do |f|%>
+<table>
+	<tr>
+      <th><%= f.label :name %></th>
+      <td><%= f.text_field :name%></td>
+  </tr>
+  <tr>
+	  <th><%= f.label :start_date%></th>
+	  <td><%= f.date_select :start_date%></td>
+  </tr>
+  <tr>
+	  <th><%= f.label :end_date %></th>
+	  <td><%= f.date_select :end_date%></td>
+  </tr>
+  <tr>
+	  <th></th>
+	  <td><%= f.submit %></td>
+  </tr>
+</table>
+<% end %>
