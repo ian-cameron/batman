@@ -1,0 +1,15 @@
+<h1>Managing Batteries</h1>
+<table>
+	<tr>
+		<th>ID</th><th>Purchased On</th><th>Notes</th><th>Actions</th>
+	</tr>
+	<%@devices.each do |d| %>
+	<tr>
+		<td><%=d.name%></td><td><%=d.purchased_on.try(:strftime,'%D')%></td><td><%=d.notes%></td><td>
+			<%= link_to "<div class='btn-sm btn-default' style='display:inline'><span class='glyphicon glyphicon-pencil'> Edit </span></div>".html_safe, edit_device_path(d) %>
+			<%= link_to "<div class='btn-sm btn-default' style='display:inline'><span class='glyphicon glyphicon-trash'> Delete </span></div>".html_safe, device_path(d), method: :delete, data: {:confirm=> "Are you sure?" }%>
+
+		</td>
+	</tr>
+	<%end%>
+</table>

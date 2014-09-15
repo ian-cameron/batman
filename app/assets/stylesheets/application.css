@@ -56,3 +56,37 @@
 .btn-header {
 	margin-top: -4px;
 }
+.battery {
+    display: inline-block;
+    border: 3px solid;
+    border-radius: 4px;
+    width: auto;
+    height:24px;
+    margin: 10px 0px 10px 10px;
+    text-align: center;
+    line-height:24px;
+    white-space: nowrap;
+}
+.battery-top {
+    display: inline-block;
+    border: 3px solid;
+    border-radius: 4px;
+    width: 3px;
+    height: 8px;
+    margin: 4px -8px 0px 0px;
+    float: right;
+}
+.battery-status {
+    margin-top:-24px;
+    height: 100%;
+    border-top-right-radius:2px;
+    border-bottom-right-radius:2px;
+    background-color:green;
+}
+.project {
+    float:left;
+    margin: 4px;
+    width: auto;
+    border: 2px dashed;
+   
+}

@@ -6,7 +6,7 @@
   </tr>
   <tr>
 	  <th><%= f.label :type %></th>
-	  <td><%= f.select :type_id,  DeviceType.all%>
+	  <td><%= f.select :type_id,  DeviceType.all.map{|m| [m.name, m.id]}%>
 		  <%= link_to "<div class='btn-sm btn-default' style='display:inline'><span class='glyphicon glyphicon-wrench'> Manage</span></div>".html_safe, device_types_path %></td>
   </tr>
   <tr>

@@ -1,4 +1,7 @@
 class DevicesController < ApplicationController
+  def index
+    @devices=Device.by_client(current_client)
+  end
   def new
     @device = Device.new
   end
@@ -26,8 +29,16 @@ class DevicesController < ApplicationController
     end
   end
   
-  private
+  def destroy
+    @device=Device.find(params[:id])
+    if @device.destroy
+      redirect_to root_path, notice: "Battery Deleted!"
+    else
+      redirect_to :back
+    end
+  end
   
+  private
   def device_params
     params.require(:device).permit(:name, :purchased_on, :retired_on, :type_id, :notes, :voltage)
   end

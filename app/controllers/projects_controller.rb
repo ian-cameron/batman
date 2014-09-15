@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
   end
   
   def index
-    @projects = Project.all
+    @projects = Project.by_client(current_client)
   end
   
   def edit
@@ -29,6 +29,14 @@ class ProjectsController < ApplicationController
     end
   end
   
+  def destroy
+    @project=Project.find(params[:id])
+    if @project.destroy
+      redirect_to root_path, notice: "Project Deleted!"
+    else
+      redirect_to :back
+    end
+  end
   private
   
   def project_params

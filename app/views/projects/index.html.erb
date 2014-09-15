@@ -1,0 +1,15 @@
+<h1>Managing Projects</h1>
+<table>
+	<tr>
+		<th>Name</th><th>Start Date</th><th>End Date</th><th>Actions</th>
+	</tr>
+	<%@projects.each do |d| %>
+	<tr>
+		<td><%=d.name%></td><td><%=d.start_date.try(:strftime,'%D')%></td><td><%=d.end_date.try(:strftime,'%D')%></td><td>
+			<%= link_to "<div class='btn-sm btn-default' style='display:inline'><span class='glyphicon glyphicon-pencil'> Edit </span></div>".html_safe, edit_project_path(d) %>
+			<%= link_to "<div class='btn-sm btn-default' style='display:inline'><span class='glyphicon glyphicon-trash'> Delete </span></div>".html_safe, project_path(d), method: :delete, data: {:confirm=> "Are you sure???" }%>
+
+		</td>
+	</tr>
+	<%end%>
+</table>
