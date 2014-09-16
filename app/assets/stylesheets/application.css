@@ -77,7 +77,9 @@
     float: right;
 }
 .battery-status {
-    margin-top:-24px;
+    position:absolute;
+	top:0;
+	left:0;
     height: 100%;
     border-top-right-radius:2px;
     border-bottom-right-radius:2px;
@@ -85,8 +87,9 @@
 }
 .project {
     float:left;
-    margin: 4px;
-    width: auto;
-    border: 2px dashed;
+    margin: -15px;
+	padding: 0px 12px 0px 0px;
+    width: 100%;
+    height: 100%;
    
 }

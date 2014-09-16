@@ -6,7 +6,8 @@
 	    <div class="panel-body">
 	      <% @devices.each do |d| %>
 		    <div class='battery' id='battery-img-<%=d.id%>'>
-				<%= d.voltage.to_s %>
+				<strong><%= d.name %></strong>
+				<%= d.voltage.to_s %>V&nbsp;
 			</div>
 		  <%end%>
 	    </div>

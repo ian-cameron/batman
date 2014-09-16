@@ -26,7 +26,12 @@ function batteryEstimate(str) {
 }
 $(window).load(function() {
 	$('.battery').draggable({grid: [20,20]});
-	$('.project').droppable({tolerance:'touch'});
+	$('.project').droppable({tolerance:'touch',
+	drop: function(event, ui) {
+		$(this).append(ui.draggable);
+		$(ui.draggable).removeAttr('style');
+	}
+		});
     $('.battery').each(function (index) {
         $(this).append('<div class="battery-top"></div>').append('<div class="battery-status" id="battery-' + index + '"></div>');
         var v = batteryEstimate($(this).text());
