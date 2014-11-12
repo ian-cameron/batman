@@ -23,7 +23,10 @@ class DevicesController < ApplicationController
   def update
     @device=Device.find(params[:id])
     if @device.update_attributes(device_params)
-      redirect_to root_url, notice: "Battery info updated." 
+      respond_to do |format|
+        format.html { redirect_to root_url, notice: "Battery info updated." }
+        format.js
+      end
     else
       render 'edit'
     end

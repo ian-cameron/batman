@@ -1,24 +1,24 @@
-	  <div class="panel panel-default">
-	    <div class="panel-heading">
-	      <h3 class="panel-title">Current Projects / Batteries In Use</h3>
-		  <%=link_to "<div class='btn-header btn-sm btn-default pull-right'><span class='glyphicon glyphicon-plus'></span> New Project</div>".html_safe, new_project_path %>
-	    </div>
-	    <div class="panel-body">
-	      <% @projects.each do |p| %>
-		    <div class='panel panel-default'>
-				<div class='panel-heading'>
-					<%=p.name%>
-					<i><%=p.start_date.strftime('%D')%> -
-						<%=p.end_date.strftime('%D')%></i>
-				<%=link_to "<div class='btn-header btn-sm btn-default pull-right'><span class='glyphicon glyphicon-edit'></span></div>".html_safe, edit_project_path(p) %>
-				<%=link_to "<div class='btn-header btn-sm btn-default pull-right'><span class='glyphicon glyphicon-remove-circle'></span></div>".html_safe, project_path(p), method: :delete, :data => { confirm: "You sure?" }%>
-				</div>
-				<div class='panel-body'>
-					<div class='project'>
-						<%#= p.name %>
-					</div>
-				</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Current Projects / Batteries In Use</h3>
+	<%=link_to "<div class='btn-header btn-sm btn-default pull-right'><span class='glyphicon glyphicon-plus'></span> New Project</div>".html_safe, new_project_path %>
+  </div>
+  <div class="panel-body">
+    <% @projects.each do |p| %>
+	    <div class='panel panel-default'>
+		  <div class='panel-heading'>
+		    <%=p.name%><span class='dates'><i><%=p.start_date.strftime('%D')%> - <%=p.end_date.strftime('%D')%></i></span>
+		    <%=link_to "<div class='btn-header btn-sm btn-default pull-right'><span class='glyphicon glyphicon-edit'></span></div>".html_safe, edit_project_path(p) %>
+		    <%=link_to "<div class='btn-header btn-sm btn-default pull-right'><span class='glyphicon glyphicon-remove-circle'></span></div>".html_safe, project_path(p), 
+		    method: :delete, :data => { confirm: "You sure?" }%>
+		  </div>
+		  <div class='panel-body'>
+		    <div class='project'>
+		      <%#= p.name %>
 			</div>
-		  <%end%>
-	    </div>
-	  </div>
+		  </div>
+		
+		</div>
+	<%end%>
+  </div>
+</div>

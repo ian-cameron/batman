@@ -6,9 +6,9 @@ class SessionsController < ApplicationController
     client = Client.authenticate(params[:login], params[:password])
     if client
       session[:client_id] = client.id
-      redirect_to root_url, :notice => "Logged in!"
+      redirect_to root_url, :notice => "Logged in!" and return
     else
-      flash.now.alert = "Invalid email or password"
+      flash[:error] = "Invalid username or password"
       render "new"
     end
   end

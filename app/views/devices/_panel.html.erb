@@ -4,11 +4,10 @@
 		  <%=link_to "<div class='btn-header btn-sm btn-default pull-right'><span class='glyphicon glyphicon-plus'></span> New Battery</div>".html_safe, new_device_path %>
 	    </div>
 	    <div class="panel-body">
+			<div class="project">
 	      <% @devices.each do |d| %>
-		    <div class='battery' id='battery-img-<%=d.id%>'>
-				<strong><%= d.name %></strong>
-				<%= d.voltage.to_s %>V&nbsp;
-			</div>
+            <%=render 'devices/battery', {:d => d}%>
 		  <%end%>
+	  </div>
 	    </div>
 	  </div>

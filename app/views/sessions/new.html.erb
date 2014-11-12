@@ -10,17 +10,17 @@ body {
 
 <div class="container">
 <div style="min-height:220px">
+
 </div>
-<%= form_tag sessions_path, class:'form-signin' do %>
-
-    <%= label_tag 'Enter user and password to continue:'%><br />
-	<%= text_field_tag :login, nil, class:'form-control', placeholder: 'username'%>
-    <%= password_field_tag :password, nil, class:'form-control', placeholder: 'password'%>
-
-  <p class="button"><%= submit_tag "Log in", class:'form-control btn btn-default' %></p>
-<% end %>
+  <%= form_tag sessions_path, class:'form-signin' do %>
+      <%= label_tag 'Enter user and password to continue:'%><br />
+  	<%= text_field_tag :login, nil, class:'form-control', placeholder: 'username'%>
+      <%= password_field_tag :password, nil, class:'form-control', placeholder: 'password'%>
+      <p class="button"><%= submit_tag "Log in", class:'form-control btn btn-default' %></p>
+		<%=render 'layouts/flash'%>
+  <% end %>
+  
 </div>
-
 <script type="text/javascript">
 function skyShift() {
 	var hue = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';

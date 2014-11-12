@@ -1,0 +1,11 @@
+/* alert('yo'); */
+
+$('#myModal').modal('toggle');
+$('#myModalBody').html("<%=escape_javascript(render 'small_form')%>");
+$('#batform-submit').click( function()
+	{
+		console.log('display spinner for updating')
+		$('#modal-status').fadeIn(200);
+		console.log('submitting update form')
+		$('#edit_device_'+<%=@device.id%>).submit();
+	});

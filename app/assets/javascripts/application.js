@@ -24,22 +24,33 @@ function batteryColor(voltage) {
 function batteryEstimate(str) {
     return (voltsRE.exec(str) - 11.5) / 1.15;
 }
+
+function batteryInit(obj, index) {
+    $(obj).append('<div class="battery-top"></div>').append('<div class="battery-status" id="battery-' + index + '"></div>');
+    var v = batteryEstimate($(obj).text());
+    v = (v > 1.0 ? 0.99 : v)
+    $('#battery-' + index).css({
+        'width': Math.floor(v * 100) + '%',
+        'background-color': batteryColor(v)	
+    });
+	$(obj).draggable({grid: [20,20]}).dblclick(function() {
+	    $.ajax({
+	      url: '/devices/'+this.id.split('-').pop()+'/edit',
+	      type: 'GET',
+		  dataType: 'script'
+	    });
+	});
+	console.log("battery "+index+" loading")	
+}
 $(window).load(function() {
-	$('.battery').draggable({grid: [20,20]});
+	$('.battery')
 	$('.project').droppable({tolerance:'touch',
 	drop: function(event, ui) {
 		$(this).append(ui.draggable);
 		$(ui.draggable).removeAttr('style');
 	}
 		});
-    $('.battery').each(function (index) {
-        $(this).append('<div class="battery-top"></div>').append('<div class="battery-status" id="battery-' + index + '"></div>');
-        var v = batteryEstimate($(this).text());
-        v = (v > 1.0 ? 0.99 : v)
-        $('#battery-' + index).css({
-            'width': Math.floor(v * 100) + '%',
-            'background-color': batteryColor(v)
-        });
-		console.log("battery "+index+" loading")
+    $('.battery').each(function (index, obj) {
+        batteryInit(obj, index);
     });
 });
