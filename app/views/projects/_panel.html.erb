@@ -3,7 +3,11 @@
     <h3 class="panel-title">Current Projects / Batteries In Use</h3>
 	<%=link_to "<div class='btn-header btn-sm btn-default pull-right'><span class='glyphicon glyphicon-plus'></span> New Project</div>".html_safe, new_project_path %>
   </div>
-  <div class="panel-body">
+  <div class="panel-body">  
+  <div id="deployment_message" class='alert alert-success alert-dismissible' role='alert' style="display:none">
+  	
+  </div>
+
     <% @projects.each do |p| %>
 	    <div class='panel panel-default'>
 		  <div class='panel-heading'>
@@ -13,8 +17,10 @@
 		    method: :delete, :data => { confirm: "You sure?" }%>
 		  </div>
 		  <div class='panel-body'>
-		    <div class='project'>
-		      <%#= p.name %>
+		    <div class='project' id ='project-<%=p.id%>' data-project='<%=p.id%>'>
+		      <% p.devices.includes(:deployments).each do |d| %>
+	            <%=render 'devices/battery', {:d => d}%>
+			  <%end%>
 			</div>
 		  </div>
 		
@@ -22,3 +28,4 @@
 	<%end%>
   </div>
 </div>
+<%=render 'deployments/hidden_form'%>

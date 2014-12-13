@@ -4,7 +4,7 @@
 		  <%=link_to "<div class='btn-header btn-sm btn-default pull-right'><span class='glyphicon glyphicon-plus'></span> New Battery</div>".html_safe, new_device_path %>
 	    </div>
 	    <div class="panel-body">
-			<div class="project">
+			<div class="project" id="batteries_available">
 	      <% @devices.each do |d| %>
             <%=render 'devices/battery', {:d => d}%>
 		  <%end%>

@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require_tree .
 var voltsRE = /\d+\.\d/;
+var dragged_from = ''
 function batteryColor(voltage) {
     var hue = ((voltage) * 120).toString(10);
     return ["hsl(", hue, ",100%,50%)"].join("");
@@ -33,7 +34,13 @@ function batteryInit(obj, index) {
         'width': Math.floor(v * 100) + '%',
         'background-color': batteryColor(v)	
     });
-	$(obj).draggable({grid: [20,20]}).dblclick(function() {
+	$(obj).draggable({
+		  grid: [20,20],
+	      start: function(event, ui) {
+		  dragged_from = ui.helper.parent()
+		  console.log('Dragging from '+dragged_from.prop('id'));
+	      }
+	      }).dblclick(function() {
 	    $.ajax({
 	      url: '/devices/'+this.id.split('-').pop()+'/edit',
 	      type: 'GET',
@@ -43,11 +50,36 @@ function batteryInit(obj, index) {
 	console.log("battery "+index+" loading")	
 }
 $(window).load(function() {
-	$('.battery')
 	$('.project').droppable({tolerance:'touch',
 	drop: function(event, ui) {
-		$(this).append(ui.draggable);
-		$(ui.draggable).removeAttr('style');
+	    $(this).append(ui.draggable);
+	    $(ui.draggable).removeAttr('style');
+		var dropped_to = ui.draggable.parent()
+		console.log('Dropped on '+ui.helper.parent().prop('id'));
+		if (dragged_from.prop('id') == 'batteries_available' && dropped_to.prop('id') != 'batteries_available')
+		    {
+			console.log("Creating new deployment")
+		    $('#deployment_project_id').val(this.getAttribute('data-project'))
+		    $('#deployment_device_id').val(ui.draggable[0].getAttribute('data-battery'))
+		    $('#deployment_start_voltage').val(ui.draggable[0].getAttribute('data-voltage'))
+		    $.ajax({
+		    	url: '/deployments',
+		    	type: 'POST',
+		    	data: $('#new_deployment').serialize(),
+		    	dataType: 'script'
+		    }) 
+	    }
+		else if (dragged_from.prop('id') != 'batteries_available' && dropped_to.prop('id') == 'batteries_available')
+		{
+			console.log('Un-deployed.')
+		}
+		else
+		{
+			console.log("Can't do that.")
+			$('#error_message').html("Invalid Action").fadeIn().delay(5000).fadeOut();
+			$(dragged_from).append(ui.draggable);
+			$(ui.draggable).removeAttr('style');
+		}
 	}
 		});
     $('.battery').each(function (index, obj) {

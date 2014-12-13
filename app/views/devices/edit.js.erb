@@ -1,7 +1,5 @@
-/* alert('yo'); */
-
-$('#myModal').modal('toggle');
 $('#myModalBody').html("<%=escape_javascript(render 'small_form')%>");
+$('#myModal').modal('show');
 $('#batform-submit').click( function()
 	{
 		console.log('display spinner for updating')

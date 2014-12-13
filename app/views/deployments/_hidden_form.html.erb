@@ -1,0 +1,7 @@
+<div id='hidden_deployments_form' aria-hidden='true'>
+<%=form_for Deployment.new do |f|%>
+    <%=f.hidden_field :project_id %>
+	<%=f.hidden_field :device_id %>
+    <%=f.hidden_field :start_voltage %>
+<%end%>
+</div>
