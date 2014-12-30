@@ -1,11 +1,12 @@
 /*console.log("rendering create.js <%=escape_javascript(@message)%>");*/
 
+var bat = $('#battery-img-<%= @deployment.device_id %>');
 <% if @deployment.errors.any? %>
-  var bat = $('#battery-img-<%= @deployment.device_id %>');
   $('#error_message').html("<%= @deployment.errors.full_messages[0] %>").fadeIn().delay(5000).fadeOut();
     <% if @deployment.project_id %>
       $('#project-<%=@deployment.project_id%>').append(bat)
     <% end %>
 <% else %>
   $('#deployment_message').html("<%= escape_javascript(@message) %>").fadeIn().delay(3000).fadeOut();
+  $(bat).data('deployment', <%= @deployment.id%>)
 <% end %>

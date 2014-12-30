@@ -71,7 +71,12 @@ $(window).load(function() {
 	    }
 		else if (dragged_from.prop('id') != 'batteries_available' && dropped_to.prop('id') == 'batteries_available')
 		{
-			console.log('Un-deployed.')
+			console.log('Un-deployed.'+ui.draggable.attr('data-deployment'))
+		    $.ajax({
+		      url: '/deployments/'+ui.draggable.attr('data-deployment')+'/edit',
+		      type: 'GET',
+			  dataType: 'script'
+		    });
 		}
 		else
 		{

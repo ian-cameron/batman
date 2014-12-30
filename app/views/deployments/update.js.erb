@@ -1,0 +1,4 @@
+$('#modal-status2').fadeOut(200);
+$('#myModal2').modal('hide');
+$('#battery-img-<%= @deployment.device.id %>').replaceWith("<%=escape_javascript(render 'devices/battery', d: @deployment.device) %>");
+batteryInit($('#battery-img-<%= @deployment.device.id %>'), "<%=@deployment.device.id%>")

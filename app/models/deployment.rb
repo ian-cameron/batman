@@ -4,7 +4,7 @@ class Deployment < ActiveRecord::Base
   belongs_to :client
   
   validates :device_id, uniqueness: { conditions: -> { where('end_date IS NULL') },
-            message: "Already Deployed!"}
+            message: "Already Deployed!" }, if: 'end_date.blank?'
   
   scope :active, -> {where('end_date IS NULL')}
 

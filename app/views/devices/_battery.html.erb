@@ -1,4 +1,4 @@
-<div class='battery' id='battery-img-<%=d.id%>' data-battery='<%=d.id%>' data-voltage='<%=d.voltage%>' <%=d.deployments.any? ? 'data-deployment='+d.deployments.first.id.to_s : ''%>>
+<div class='battery' id='battery-img-<%=d.id%>' data-battery='<%=d.id%>' data-voltage='<%=d.voltage%>' <%=d.deployments.active.any? ? 'data-deployment='+d.deployments.active.first.id.to_s : ''%>>
   <div style="display:inline; position:relative; top:0; left:0; z-index:2;">&nbsp;<strong><%= d.name %></strong>
     <%= d.voltage.to_s %>V&nbsp;
   </div>

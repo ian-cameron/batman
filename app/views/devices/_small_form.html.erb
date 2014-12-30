@@ -15,6 +15,7 @@
 	  <th><%= f.label :notes %></th>
 	  <td><%= f.text_area :notes%></td>
   </tr>
-
+  
 </table>
+<em>Last updated <%=time_ago_in_words(@device.updated_at)%> ago.</em>
 <% end %>

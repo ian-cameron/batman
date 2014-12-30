@@ -96,6 +96,9 @@
 .dates {
     margin-left: 1em;	
 }
+.title-logo {
+	padding-right: 1.5em;
+}
 #modal-status  {
 	width: 64px;
 	height: 64px;

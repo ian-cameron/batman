@@ -37,6 +37,19 @@ class ProjectsController < ApplicationController
       redirect_to :back
     end
   end
+  
+  def archive
+    @project=Project.find(params[:id])
+    if @project.update_attributes(archived: true)
+      @project.deployments.each do |d|
+        d.update_attributes(end_date: Time.now)
+      end
+      redirect_to root_path, notice: "Project Archived!"
+    else
+      redirect_to :back
+    end
+  end
+  
   private
   
   def project_params

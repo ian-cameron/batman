@@ -13,13 +13,13 @@
 		  <div class='panel-heading'>
 		    <%=p.name%><span class='dates'><i><%=p.start_date.strftime('%D')%> - <%=p.end_date.strftime('%D')%></i></span>
 		    <%=link_to "<div class='btn-header btn-sm btn-default pull-right'><span class='glyphicon glyphicon-edit'></span></div>".html_safe, edit_project_path(p) %>
-		    <%=link_to "<div class='btn-header btn-sm btn-default pull-right'><span class='glyphicon glyphicon-remove-circle'></span></div>".html_safe, project_path(p), 
-		    method: :delete, :data => { confirm: "You sure?" }%>
+		    <%=link_to "<div class='btn-header btn-sm btn-default pull-right'><span class='glyphicon glyphicon-remove-circle'></span></div>".html_safe, archive_project_path(p), 
+		    method: :patch, :data => { confirm: (p.deployments.empty? ? "Are you sure you wish to deactivate this project?" : "This will deactivate the project, and make available any batteries deployed in this project.  Their deployment end date for this project will auomatically be set to today's date.  You'll also still need to update voltages manually. Are you sure?") }%>
 		  </div>
 		  <div class='panel-body'>
 		    <div class='project' id ='project-<%=p.id%>' data-project='<%=p.id%>'>
-		      <% p.devices.includes(:deployments).each do |d| %>
-	            <%=render 'devices/battery', {:d => d}%>
+		      <% p.active_deployments.each do |d| %>
+	            <%=render 'devices/battery', {:d => d.device}%>
 			  <%end%>
 			</div>
 		  </div>

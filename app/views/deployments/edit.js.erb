@@ -1,0 +1,15 @@
+$('#myModalBody2').html("<%=escape_javascript(render 'small_form')%>");
+$('#myModal2').modal('show');
+$('#depform-submit').click( function()
+	{
+		console.log('display spinner for updating')
+		$('#modal-status').fadeIn(200);
+		console.log('submitting update form')
+		$('#edit_deployment_'+<%=@deployment.id%>).submit();
+	});
+$('#depform-close').click( function()
+    {
+	   $('#project-'+<%=@deployment.project.id%>).append(
+	   	$('#battery-img-'+<%=@deployment.device.id%>)
+	   ) 
+    });
