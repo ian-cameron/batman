@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     if @project.update_attributes(project_params)
-      redirect_to root_url, notice: "project updated successfully" 
+      redirect_to root_url, notice: "Project updated successfully" 
     else
       render 'edit'
     end
@@ -32,7 +32,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project=Project.find(params[:id])
     if @project.destroy
-      redirect_to root_path, notice: "Project Deleted!"
+      redirect_to root_path, notice: "Project deleted!"
     else
       redirect_to :back
     end
@@ -44,7 +44,7 @@ class ProjectsController < ApplicationController
       @project.deployments.each do |d|
         d.update_attributes(end_date: Time.now)
       end
-      redirect_to root_path, notice: "Project Archived!"
+      redirect_to root_path, notice: "Project archived!"
     else
       redirect_to :back
     end

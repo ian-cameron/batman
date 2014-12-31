@@ -1,12 +1,11 @@
-/*console.log("rendering create.js <%=escape_javascript(@message)%>");*/
-
-var bat = $('#battery-img-<%= @deployment.device_id %>');
+console.log("rendering create.js <%=escape_javascript(@message) %>"+'#battery-img-<%= escape_javascript(@deployment.device_id.to_s) %>');var bat = $('#battery-img-<%= escape_javascript(@deployment.device_id.to_s) %>');
 <% if @deployment.errors.any? %>
   $('#error_message').html("<%= @deployment.errors.full_messages[0] %>").fadeIn().delay(5000).fadeOut();
     <% if @deployment.project_id %>
       $('#project-<%=@deployment.project_id%>').append(bat)
     <% end %>
 <% else %>
-  $('#deployment_message').html("<%= escape_javascript(@message) %>").fadeIn().delay(3000).fadeOut();
-  $(bat).data('deployment', <%= @deployment.id%>)
+  $('#success_message').html('<%= escape_javascript(@message) %>').fadeIn().delay(3000).fadeOut();
+  bat[0].setAttribute('data-deployment', '<%= escape_javascript(@deployment.id.to_s)%>')
+  console.log('adding deployment ID to battery ' + bat[0].getAttribute('data-battery'))
 <% end %>

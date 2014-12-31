@@ -1,0 +1,49 @@
+<div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="helpModalLabel">Battery Management Help</h4>
+      </div>
+      <div class="modal-body">
+        <p>This app is designed to track battery usage.  Batteries are either available to deploy, or are already deployed in a project.  The intended purpose of this app is to make it as easy as possible to keep track of which batteries are avialble, and which are deployed and where. Projects and batteries can be created and moved around at any time within this app.</p> <p>Batteries are represented by this icon:</p>
+		<div class="battery" id="battery-img-x" data-battery="x" data-voltage="12.6" data-deployment="x">
+		  <div style="display:inline; position:relative; top:0; left:0; z-index:2;">&nbsp;<strong>EX001</strong>&nbsp;&nbsp;12.6V&nbsp;</div>
+		<div class="battery-top"></div><div class="battery-status" id="battery-5" style="width: 95%; background-color: rgb(26, 255, 0);"></div></div>
+		<p>All deployments of batteries are saved in the database, along with begin and end voltage.  The deployment history of each battery is tracked. </p>
+		<hr></hr>
+		<h4>Getting Started</h4>
+		<ul class="list-unstyled">
+			<li>Click				
+				<%=link_to "<button type='button' class='btn btn-xs btn-default'><span class='glyphicon glyphicon-plus'></span> New Battery</button>".html_safe, new_device_path %>
+				to add a new battery. Each battery should have a unique identifier, on a physical label.</li>
+			<li>Click
+				<%=link_to "<button type='button' class='btn btn-xs btn-default'><span class='glyphicon glyphicon-plus'></span> New Project</button>".html_safe, new_project_path %> 
+				to add a new project. Projects have a begin and end date.  Archived projects will not show up on the home screen but are saved.</li>
+		</ul>
+		<hr></hr>
+		<h4>Usage</h4>
+		<ul class="list-unstyled">
+			<li>Drag batteries into projects to create a deployment.</li>
+			<li>Drag a battery from an existing project into the 'Batteries Available' area to end a deployment.</li>
+			<li>
+
+			</li>
+		</ul>
+		<hr></hr>
+		<h4>Editing batteries, deployments, and projects</h4>
+		<ul class="list-unstyled">
+			<li>Double-click a battery to edit its voltage</li>
+			<li>Double-click a battery in an existing project to edit the battery or the deployment.</li>
+			<li>Click the <button type='button' class='btn btn-xs btn-default'><span class='glyphicon glyphicon-edit'></span></button>
+				button to edit an existing project.</li>
+			<li>Click the <button type='button' class='btn btn-xs btn-default'><span class='glyphicon glyphicon-remove-circle'></span></button>
+				button to archive an existing project, which ends the deployment of all batteries in that project.</li>
+		</ul>
+      </div>
+	  <div class='modal-footer'>
+		  Source code and issues available on <%=link_to 'Github Repository', 'https://github.com/ian-cameron/batman'%>
+	  </div>
+    </div>
+  </div>
+</div>

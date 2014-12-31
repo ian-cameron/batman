@@ -110,3 +110,24 @@
 	background-repeat: no-repeat;
 	background-position: center;
 }
+
+.modal-lg {
+    width: 90%; 
+    margin-left:auto;
+    margin-right:auto; 
+}
+
+table.batform td {
+	padding: 0 0 .2em 1em;
+	width: 99%;
+}
+table.batform th {
+	vertical-align:top;
+	white-space:nowrap;
+}
+#device_notes {
+	width: 85%;
+}
+table.horizontalform th, table.horizontalform td {
+	padding: 0 0 .2em 1em;
+}

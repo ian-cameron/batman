@@ -1,5 +1,6 @@
 class Client < ActiveRecord::Base
   has_many :devices
+  has_many :device_types
   has_many :deployments
   has_many :projects
   validates_confirmation_of :password

@@ -43,6 +43,6 @@ class DevicesController < ApplicationController
   
   private
   def device_params
-    params.require(:device).permit(:name, :purchased_on, :retired_on, :type_id, :notes, :voltage)
+    params.require(:device).permit(:name, :purchased_on, :retired_on, :type_id, :notes, :voltage, deployments_attributes: [:id, :start_date])
   end
 end

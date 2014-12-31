@@ -7,5 +7,5 @@ class Project < ActiveRecord::Base
   scope :by_client, lambda { |current_client| 
      where(:client => current_client) }
   
-  scope :active, -> { where(archived: false||nil)}
+  scope :active, -> { where(archived: [false, nil])}
 end

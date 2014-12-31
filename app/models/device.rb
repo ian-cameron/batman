@@ -4,6 +4,8 @@ class Device < ActiveRecord::Base
   has_many :projects, through: :deployments
   has_many :deployments
   
+  accepts_nested_attributes_for :deployments
+  
   scope :by_client, lambda { |current_client| 
      where(:client => current_client) 
   }
@@ -11,4 +13,7 @@ class Device < ActiveRecord::Base
       where('id NOT IN (SELECT DISTINCT(device_id) FROM deployments WHERE end_date IS NULL)') 
   }
 
+  def available?
+    Device.available.exists?(self)
+  end
 end

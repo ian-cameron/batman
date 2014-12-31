@@ -34,6 +34,7 @@ class DeploymentsController < ApplicationController
     @deployment=Deployment.find(params[:id])
     if @deployment.update_attributes(deployment_params)
       update_battery_status(@deployment)
+      @message = "Deployment history saved."
       respond_to do |format|
         format.html { redirect_to root_url, notice: "Battery info updated." }
         format.js

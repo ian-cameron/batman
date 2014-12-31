@@ -29,9 +29,10 @@ class DeviceTypesController < ApplicationController
     end
   end
   
+  #TODO make a destroy method cascasde by changing existing devices to another device type.
   private
   
   def device_type_params
-    params.require(:device_type).permit(:name, :brand, :notes)
+    params.require(:device_type).permit(:name, :brand, :notes, :client_id)
   end
 end

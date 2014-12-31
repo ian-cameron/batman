@@ -42,7 +42,7 @@ function batteryInit(obj, index) {
 	      }
 	      }).dblclick(function() {
 	    $.ajax({
-	      url: '/devices/'+this.id.split('-').pop()+'/edit',
+	      url: '/devices/'+this.getAttribute('data-battery')+'/edit',
 	      type: 'GET',
 		  dataType: 'script'
 	    });
@@ -50,6 +50,7 @@ function batteryInit(obj, index) {
 	console.log("battery "+index+" loading")	
 }
 $(window).load(function() {
+	console.log("Setting things up")
 	$('.project').droppable({tolerance:'touch',
 	drop: function(event, ui) {
 	    $(this).append(ui.draggable);
@@ -71,7 +72,7 @@ $(window).load(function() {
 	    }
 		else if (dragged_from.prop('id') != 'batteries_available' && dropped_to.prop('id') == 'batteries_available')
 		{
-			console.log('Un-deployed.'+ui.draggable.attr('data-deployment'))
+			console.log('Un-deployed '+ui.draggable.attr('data-deployment'))
 		    $.ajax({
 		      url: '/deployments/'+ui.draggable.attr('data-deployment')+'/edit',
 		      type: 'GET',
@@ -81,7 +82,7 @@ $(window).load(function() {
 		else
 		{
 			console.log("Can't do that.")
-			$('#error_message').html("Invalid Action").fadeIn().delay(5000).fadeOut();
+			$('#error_message').html("Invalid action").fadeIn().delay(3000).fadeOut();
 			$(dragged_from).append(ui.draggable);
 			$(ui.draggable).removeAttr('style');
 		}
