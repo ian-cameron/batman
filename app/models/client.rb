@@ -8,8 +8,8 @@ class Client < ActiveRecord::Base
   validates_presence_of [:password, :login]
   
   def self.authenticate(login, password)
-      client = find_by_login(login) 
-      if client && client.password == password
+      client = find_by "LOWER(login) LIKE ?", login.downcase
+      if client && client.password.downcase == password.downcase
         client
       else
         sleep(3.0)
