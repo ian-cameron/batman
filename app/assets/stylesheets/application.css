@@ -116,6 +116,14 @@
     margin-left:auto;
     margin-right:auto; 
 }
+.inner-header {
+	padding-bottom: 15px;
+}
+
+div.inner-header hr {
+	margin-left: -15px;
+	margin-right: -15px;
+}
 
 table.batform td {
 	padding: 0 0 .2em 1em;
@@ -131,3 +139,13 @@ table.batform th {
 table.horizontalform th, table.horizontalform td {
 	padding: 0 0 .2em 1em;
 }
+
+table.info th {
+	padding: 0 1em 0 1em;
+	text-align: right;
+}
+
+table.legend {
+	max-width: 10em;
+	float: right;
+	

@@ -26,6 +26,10 @@
 </table>
 <hr></hr>
 <table class='batform'>
+    <tr>
+  	  <th><%= f.label :deployed_in %></th>
+  	  <td><%= f.text_field :deployed_in%></td>
+    </tr>
   <tr>
 	  <th><%= f.label :end_voltage %></th>
 	  <td><%= f.number_field :end_voltage, {min: 0, max: 24, step: 0.1} %></td>

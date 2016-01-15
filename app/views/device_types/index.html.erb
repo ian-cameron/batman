@@ -1,5 +1,5 @@
 <h1>Managing Battery Types</h1>
-<table class='horizontalform'>
+<table class='table'>
 	<tr>
 		<th>Model</th><th>Make</th><th>Notes</th><th>Actions</th>
 	</tr>
@@ -7,7 +7,7 @@
 	<tr>
 		<td><%=dt.name%></td><td><%=dt.brand%></td><td><%=dt.notes%></td><td>
 			<%= link_to "<div class='btn btn-xs btn-default' style='display:inline'><span class='glyphicon glyphicon-pencil'> Edit </span></div>".html_safe, edit_device_type_path(dt) %>
-			<%= link_to "<div class='btn btn-xs btn-default' style='display:inline'><span class='glyphicon glyphicon-trash'> Delete </span></div>".html_safe, device_type_path(dt), method: :delete, data: {:confirm=> "Are you sure?" }%>
+			<%#= link_to "<div class='btn btn-xs btn-default' style='display:inline'><span class='glyphicon glyphicon-trash'> Delete </span></div>".html_safe, device_type_path(dt), method: :delete, data: {:confirm=> "Are you sure?" }%>
 
 		</td>
 	</tr>

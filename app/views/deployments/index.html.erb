@@ -1,0 +1,49 @@
+			<% if @device %>
+			<%=link_to "<div class='btn btn-default pull-right'><span class='glyphicon glyphicon-list'></span> All Batteries</div>".html_safe, devices_path %>
+			<h1>Deployment History for Battery</h1>
+			<div class='clearfix'></div>
+			<div class="panel panel-info">
+				<div class="panel-body">
+					<%= link_to "<div class='btn-sm btn-default pull-right' style='display:inline'><span class='glyphicon glyphicon-pencil'> Edit </span></div>".html_safe, edit_device_path(@device) %>
+					<table class="info">
+				<tr>
+					<th>Battery Label</th>
+					<td><%= @device.name %></td>
+				</tr>
+				<tr>
+					<th>Battery Type</th>
+					<td><%= @device.device_type.make_and_model %></td>
+				</tr>
+				<tr>
+					<th>Total Deployed Time</th>
+					<td><%=@device.time_deployed%> days
+						(<%= distance_of_time_in_words(@device.time_deployed*86400)%>) 
+					</td>
+				</tr>
+				</table>
+				
+			</div>
+		</div>
+			<% elsif @project %>
+			<%=link_to "<div class='btn btn-default pull-right'><span class='glyphicon glyphicon-list'></span> All Projects</div>".html_safe, projects_path %>
+			<h1>Deployment History for Project</h1>
+			
+			<div class='clearfix'></div>
+			<div class="panel panel-info">
+				<div class="panel-body">
+					<%= link_to "<div class='btn-sm btn-default pull-right' style='display:inline'><span class='glyphicon glyphicon-pencil'> Edit </span></div>".html_safe, edit_device_path(@project) %>
+					<table class="info">
+				<tr>
+					<th>Project</th>
+					<td><%=@project.name%></td>
+				</tr>
+				<tr>
+					<th>Batteries Used</th>
+					<td><%= @project.devices.uniq.count %></td>
+				</tr>
+				</table>
+			</div>
+		</div>
+			<% end %>
+
+<%= render 'details'%>

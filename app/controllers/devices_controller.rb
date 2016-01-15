@@ -24,7 +24,7 @@ class DevicesController < ApplicationController
     @device=Device.find(params[:id])
     if @device.update_attributes(device_params)
       respond_to do |format|
-        format.html { redirect_to root_url, notice: "Battery info updated." }
+        format.html { redirect_to devices_url, notice: "Battery info updated." }
         format.js
       end
     else
@@ -43,6 +43,6 @@ class DevicesController < ApplicationController
   
   private
   def device_params
-    params.require(:device).permit(:name, :purchased_on, :retired_on, :type_id, :notes, :voltage, deployments_attributes: [:id, :start_date])
+    params.require(:device).permit(:name, :purchased_on, :retired_on, :type_id, :notes, :voltage, :archived, deployments_attributes: [:id, :start_date, :deployed_in])
   end
 end

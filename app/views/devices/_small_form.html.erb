@@ -16,22 +16,34 @@
 	  <td><%= f.text_area :notes%></td>
   </tr>
   <tr>
+	  <th>History</th>
+  	  <td>
+	  	<%=link_to pluralize(@device.deployments.count, "deployment"), device_deployments_path(@device) %> 
+		(<%=@device.time_deployed%> days.)
+      </td>
+  </tr>
+  <tr>
 	  <th></th>
 	  <td><em>Last updated <%=time_ago_in_words(@device.updated_at)%> ago.</em></td>
-</table>
+  </tr>
+  </table>
 
   <% unless @device.available? %>
-  <hr></hr>
-<h4 class="modal-title" id="myModalLabel2">Active Deployment Info</h4>
-  <table class='batform'>
-  <%= f.fields_for :deployments, @device.deployments.active.first do |d|%>
-  <tr>
-	  <th><%= d.label :start_date %></th>
-	  <td><%= d.date_select :start_date%></td>
-  </tr>
+  <div class="inner-header">
+  	<hr></hr>
+    <h4 class="modal-title" id="myModalLabel2">Active Deployment Info</h4>
+  </div>
+  	<table class='batform'>
+  	<%= f.fields_for :deployments, @device.deployments.active.first do |d|%>
+  		<tr>
+  			  <th><%= d.label :deployed_in %></th>
+  			  <td><%= d.text_field :deployed_in%></td>
+  		</tr>
+  		<tr>
+  			  <th><%= d.label :start_date %></th>
+  			  <td><%= d.date_select :start_date%></td>
+  		</tr>
+  	<% end %>
+	</table>
   <% end %>
-
-</table>
-<% end %>
-
 <% end %>

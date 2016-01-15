@@ -1,7 +1,14 @@
 class DeploymentsController < ApplicationController
   def index
-    @deployments=Deployment.by_client(current_client)
+    if (params[:device_id])
+      @device = Device.find(params[:device_id])
+      @deployments = @device.deployments
+    elsif (params[:project_id])
+      @project = Project.find(params[:project_id])
+      @deployments = @project.deployments  
+    end
   end
+  
   def new
     @deployment = Deployment.new
   end

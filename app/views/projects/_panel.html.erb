@@ -1,7 +1,8 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Current Projects / Batteries In Use</h3>
+    <h3 class="panel-title">Active Projects</h3>
 	<%=link_to "<div class='btn-header btn-sm btn-default pull-right'><span class='glyphicon glyphicon-plus'></span> New Project</div>".html_safe, new_project_path %>
+	<%=link_to "<div class='btn-header btn-sm btn-default pull-right'><span class='glyphicon glyphicon-list'></span> View All</div>".html_safe, projects_path %>
   </div>
   <div class="panel-body">  
   <div id="deployment_message" class='alert alert-success alert-dismissible' role='alert' style="display:none">

@@ -1,5 +1,5 @@
 <%=form_for @project do |f|%>
-<table>
+<table class="table">
 	<tr>
       <th><%= f.label :name %></th>
       <td><%= f.text_field :name%></td>
@@ -12,10 +12,12 @@
 	  <th><%= f.label :end_date %></th>
 	  <td><%= f.date_select :end_date%></td>
   </tr>
+  <% if @project.archived %>
   <tr>
 	  <th><%= f.label :archived %></th>
-	  <td><%= f.check_box :archived%></td>
+	  <td><%= f.check_box :archived%>  <em>Uncheck to reactivate project.</em></td>
   </tr>
+  <% end %>
   <tr>
 	  <th></th>
 	  <td><%= f.submit %></td>

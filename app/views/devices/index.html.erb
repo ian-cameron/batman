@@ -1,14 +1,30 @@
-<h1>Managing Batteries</h1>
-<table>
+<h1 style="float:left">All Batteries</h1>
+<table class='table table-condensed table-bordered legend'>
+	<tr><th>Legend</th></tr>
+	<tr><td class='success'>Deployed</td></tr>
+	<tr><td class='warning'>Available</td></tr>
+	<tr><td class='danger'>Retired</td></tr>
+</table>
+<table class="table table-hover">
 	<tr>
-		<th>ID</th><th>Purchased On</th><th>Notes</th><th>Actions</th>
+		<th>Name</th>
+		<th>Purchased On</th>
+		<th>Type</th>
+		<th>Total Deployments</th>
+		<th>Days Used</th>
+		<th>Notes</th>
+		<th>Actions</th>
 	</tr>
 	<%@devices.each do |d| %>
-	<tr>
-		<td><%=d.name%></td><td><%=d.purchased_on.try(:strftime,'%D')%></td><td><%=d.notes%></td><td>
+	<tr class=<%="#{if d.available? then 'warning' elsif d.archived then 'danger' else 'success' end}"%>>
+		<td><%= d.name%></td>
+		<td><%= d.purchased_on.try(:strftime,'%D')%></td>
+		<td><%= d.device_type.make_and_model %></td>
+		<td><%= link_to d.deployments.count, device_deployments_path(d)%></td>
+		<td><%= d.time_deployed%> days</td>
+		<td><%= d.notes%></td>
+		<td>
 			<%= link_to "<div class='btn-sm btn-default' style='display:inline'><span class='glyphicon glyphicon-pencil'> Edit </span></div>".html_safe, edit_device_path(d) %>
-			<%= link_to "<div class='btn-sm btn-default' style='display:inline'><span class='glyphicon glyphicon-trash'> Delete </span></div>".html_safe, device_path(d), method: :delete, data: {:confirm=> "Are you sure?" }%>
-
 		</td>
 	</tr>
 	<%end%>

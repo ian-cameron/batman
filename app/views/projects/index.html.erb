@@ -1,14 +1,24 @@
-<h1>Managing Projects</h1>
-<table>
+<h1>All Projects</h1>
+<table class="table table-hover">
 	<tr>
-		<th>Name</th><th>Start Date</th><th>End Date</th><th>Actions</th>
+		<th>Name</th>
+		<th>Batteries</th>
+		<th>Start Date</th>
+		<th>End Date</th>
+		<th>Active?</th>
+		<th>Actions</th>
 	</tr>
 	<%@projects.each do |d| %>
-	<tr>
-		<td><%=d.name%></td><td><%=d.start_date.try(:strftime,'%D')%></td><td><%=d.end_date.try(:strftime,'%D')%></td><td>
+	<tr <%=!d.archived ? 'class=success' : ''%>>
+		<td><%=d.name%></td>
+		<td><%=link_to(d.deployments.count, project_deployments_path(d))%></td>
+		<td><%=d.start_date.try(:strftime,'%D')%></td>
+		<td><%=d.end_date.try(:strftime,'%D')%></td>
+		<td><%=!d.archived%></td>
+		<td>
 			<%= link_to "<div class='btn-sm btn-default' style='display:inline'><span class='glyphicon glyphicon-pencil'> Edit </span></div>".html_safe, edit_project_path(d) %>
-			<%= link_to "<div class='btn-sm btn-default' style='display:inline'><span class='glyphicon glyphicon-trash'> Delete </span></div>".html_safe, project_path(d), method: :delete, data: {:confirm=> "Are you sure???" }%>
-
+		    <%= link_to "<div class='btn-sm btn-default' style='display:inline'><span class='glyphicon glyphicon-remove-circle'> Deactivate </span></div>".html_safe, archive_project_path(d), 
+		    method: :patch, :data => { confirm: (d.deployments.empty? ? "Are you sure you wish to deactivate this project?" : "This will deactivate the project, and make available any batteries deployed in this project.  Their deployment end date for this project will auomatically be set to today's date.  You'll also still need to update voltages manually. Are you sure?") } unless d.archived %>
 		</td>
 	</tr>
 	<%end%>

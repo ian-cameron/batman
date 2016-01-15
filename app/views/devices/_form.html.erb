@@ -1,5 +1,5 @@
 <%=form_for @device do |f|%>
-<table>
+<table class="table">
 	<tr>
       <th><%= f.label :name %></th>
       <td><%= f.text_field :name%></td>
@@ -21,6 +21,12 @@
 	  <th><%= f.label :notes %></th>
 	  <td><%= f.text_area :notes%></td>
   </tr>
+  <% if @device.available? || @device.archived %>
+  <tr>
+	  <th><%= f.label :archived %></th>
+	  <td><%= f.check_box :archived%></td>
+  </tr>
+  <% end %>
   <tr>
 	  <th></th>
 	  <td><%= f.submit %></td>

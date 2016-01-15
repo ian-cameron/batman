@@ -1,0 +1,22 @@
+<h3>Deployment Details</h3>
+<table class="table table-hover">
+	<tr>
+		<th><%= @project ? 'Battery' : 'Project'%></th>
+		<th>Duration</th>
+		<th>Begin Date</th>
+		<th>End Date</th>
+		<th>Beginning Voltage</th>
+		<th>Ending Voltage</th>
+		<th>Deployed In</th>
+<% @deployments.each do |d| %>
+<tr <%=d.end_date ? '' : 'class=success'%>>
+	<td><%= @project ? link_to(d.device.name, device_deployments_path(d.device)) : link_to(d.project.name, project_deployments_path(d.project)) %>                   </td>
+	<td><%= distance_of_time_in_words(d.start_date, (d.end_date || Time.now))%></td>
+	<td><%= d.start_date.strftime("%D") %></td>
+	<td><%= d.end_date.try(:strftime, "%D") || "in progress"  %> </td>
+	<td><%= d.start_voltage %>                  </td>
+	<td><%= d.end_voltage %>                    </td>
+	<td><%= d.deployed_in %>					</td>
+</tr>
+<% end %>
+</table>

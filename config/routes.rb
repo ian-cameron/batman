@@ -6,10 +6,14 @@ Rails.application.routes.draw do
   patch "projects/:id/archive" => "projects#archive", :as => "archive_project"
   resources :clients
   resources :sessions
-  resources :devices
+  resources :devices do
+    resources :deployments
+  end
   resources :device_types
-  resources :projects
-  resources :deployments
+  resources :projects do
+    resources :deployments
+  end
+  resources :deployments, except: [:index, :new]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
